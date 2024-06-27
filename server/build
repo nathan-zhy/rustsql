@@ -1,0 +1,28 @@
+#!/bin/bash
+echo "==============================================="
+echo "================clean source==================="
+echo "==============================================="
+rm -r -f ./src
+if [ $? != 0 ]; then
+   echo "cannot clean source" 1>&2
+   exit 1
+fi
+echo "==============================================="
+echo "================copy source===================="
+echo "==============================================="
+cp -r -f /mnt/d/project/rust/rustWeb/.env .
+cp -r -f /mnt/d/project/rust/rustWeb/Cargo.lock .
+cp -r -f /mnt/d/project/rust/rustWeb/Cargo.toml .
+cp -r -f /mnt/d/project/rust/rustWeb/src ./src
+if [ $? != 0 ]; then
+   echo "cannot copy source" 1>&2
+   exit 1
+fi
+echo "==============================================="
+echo "================build source==================="
+echo "==============================================="
+cargo build --release
+if [ $? != 0 ]; then
+   echo "cannot build source" 1>&2
+   exit 1
+fi

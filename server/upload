@@ -1,0 +1,13 @@
+#!/bin/sh
+ftp -v -n 47.108.56.218<<EOF
+user payuse.scwismed.com fyd6JSC2YJhJ3Xbs
+binary
+cd /
+lcd /home/rustWeb/target/release/
+prompt
+passive
+put ./web_server
+bye
+#here document
+EOF
+echo "commit to ftp successfully"
